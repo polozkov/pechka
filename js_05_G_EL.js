@@ -9,7 +9,7 @@ G.EL =  {
         el.innerHTML = el.innerHTML + inner_html_to_add;
     },
 
-    f_set_view_box: function(must_wh = new G.F_XYZ(1000, 1000), el = G.EL.main_svg) {
+    f_set_view_box: function(must_wh = new G.F_XYZ(60, 60), el = G.EL.main_svg) {
         var old_wh = new G.F_XYZ(el.clientWidth, el.clientHeight);
         var scale, view_box_string, new_wh;
 
@@ -23,7 +23,8 @@ G.EL =  {
         new_wh = old_wh.f_op_scale(scale);
         view_box_string = G.F_AB.f_by_center_and_wh(new_wh).f_get_view_box();
         el.setAttribute("viewBox", view_box_string);
-        console.log(new_wh);
+        G.must_wh = new G.F_XYZ(must_wh.x, must_wh.y, 0);
+        console.log(view_box_string, new_wh);
     }
 };
 

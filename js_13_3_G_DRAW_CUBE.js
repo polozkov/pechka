@@ -7,7 +7,7 @@ G.DRAW.CUBE = {
         return G.ARR.f_gen(8, f);
     },
 
-    f_all_faces: function (p8, i_cube = 0) {
+    f_all_faces: function (p8, i_cube = 0, is_27 = true) {
         //return [arr4_vertices_of_face] in [brackets] for adding style
         var f = function(i) {
             var arr4_vertices_of_face = G.C.arr_f6[i]
@@ -16,7 +16,7 @@ G.DRAW.CUBE = {
             }
             var arr_points = G.ARR.f_gen(arr4_vertices_of_face.length, f_vertice);
             //debugger
-            var style = G.V.STYLES.f_default_styles_for_cube(i_cube);
+            var style = G.V.STYLES.f_default_styles_for_cube(i_cube, i, is_27);
             //debugger
             return new G.F_POLYGON(arr_points, style);
         }
@@ -33,14 +33,14 @@ G.DRAW.CUBE = {
         return G.DRAW.f_polygon_array_with_sort(arr6_faces);
     },
 
-    f_draw_polycube: function (arr_cubes, sizes_xyz_grid, rotation_xyz, cube_ratio_fill) {
+    f_draw_polycube: function (arr_cubes, sizes_xyz_grid, rotation_xyz, cube_ratio_fill, is_27 = true) {
         var m33 = G.M_33.f_scale_and_rot(sizes_xyz_grid.f_op_scale(0.5), rotation_xyz);
 
 
         function f_arr6_faces(i) {
             var c00 = arr_cubes[i].center.f_op_mult_matrix_33(m33);
             var v8 = G.DRAW.CUBE.f_arr_v8(m33, c00, cube_ratio_fill);
-            var arr6_faces = G.DRAW.CUBE.f_all_faces(v8, i);
+            var arr6_faces = G.DRAW.CUBE.f_all_faces(v8, i, is_27);
             return arr6_faces;
         }
 

@@ -74,5 +74,7 @@ var G = {
     DRAW: {},
 
     //Artificial intelligence for solving puzzle
-    AI: {}
+    AI: {},
+
+    TRICUBE: {}
 };
